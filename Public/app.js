@@ -2,7 +2,6 @@
   const page = document.body.dataset.page || "";
   const toastEl = document.getElementById("toast");
   const MAP_RADIUS_M = 1200;
-  const PLAYABLE_RADIUS_M = 350;
   const ALERT_RADIUS_M = 1000;
   const ALERT_POLL_MS = 45000;
   const ONBOARDING_SEEN_KEY = "pv.onboardingSeen.v1";
@@ -1691,7 +1690,7 @@
 
     playBtnNew?.addEventListener("click", () => {
       localStorage.setItem("pv.activeVoice", JSON.stringify(voice));
-      window.location.href = shouldAutoplayOnSelect() ? "/play.html?autoplay=1" : "/play.html";
+      window.location.href = "/play.html";
     });
     photosBtnNew?.addEventListener("click", () => {
       localStorage.setItem("pv.activeVoice", JSON.stringify(voice));
@@ -1870,8 +1869,7 @@
       `;
       row.addEventListener("click", () => {
         localStorage.setItem("pv.activeVoice", JSON.stringify(voice));
-        const canAutoplay = shouldAutoplayOnSelect() && Number.isFinite(voice.distance_m) && voice.distance_m <= PLAYABLE_RADIUS_M;
-        window.location.href = canAutoplay ? "/play.html?autoplay=1" : "/play.html";
+        window.location.href = "/play.html";
       });
       listEl.appendChild(row);
     });
@@ -1977,24 +1975,7 @@
     const dist = here && Number.isFinite(voice.lat) && Number.isFinite(voice.lng)
       ? haversineMeters(here, { lat: Number(voice.lat), lng: Number(voice.lng) })
       : NaN;
-    const ownerToken = getDeleteTokens()[voice.id];
-    const playable = Boolean(ownerToken) || !here || (Number.isFinite(dist) && dist <= PLAYABLE_RADIUS_M);
-
-    if (playable) {
-      openMarkerPopup({ ...voice, distance_m: Number.isFinite(dist) ? Math.round(dist) : voice.distance_m });
-      return;
-    }
-
-    mapAdapter?.goTo?.(Number(voice.lat), Number(voice.lng), 17);
-    toast(`Too far to play. Route shown to exact voice pin (${formatDistance(dist)} away).`);
-    openNavigationTo(
-      {
-        lat: Number(voice.lat),
-        lng: Number(voice.lng),
-        place_id: ""
-      },
-      voice.title || "voice location"
-    );
+    openMarkerPopup({ ...voice, distance_m: Number.isFinite(dist) ? Math.round(dist) : voice.distance_m });
   }
 
   async function createMapAdapter(mapEl, center) {
@@ -2322,8 +2303,7 @@
         `;
         row.addEventListener("click", () => {
           localStorage.setItem("pv.activeVoice", JSON.stringify(voice));
-          const canAutoplay = shouldAutoplayOnSelect() && Number.isFinite(voice.distance_m) && voice.distance_m <= PLAYABLE_RADIUS_M;
-          window.location.href = canAutoplay ? "/play.html?autoplay=1" : "/play.html";
+          window.location.href = "/play.html";
         });
         list.appendChild(row);
       });
@@ -2684,14 +2664,13 @@
         : "Pinned near: exact storefront context unavailable";
     }
 
-    const ownerToken = getDeleteTokens()[voice.id];
     const liveUser = await getLiveCoordsOrNull();
     const distance = liveUser ? haversineMeters(liveUser, { lat: Number(voice.lat), lng: Number(voice.lng) }) : NaN;
     if (badge) badge.textContent = Number.isFinite(distance) ? formatDistance(distance) : "location off";
     if (expiry) expiry.textContent = "Permanent";
     if (categoryEl) categoryEl.textContent = voice.category || "General";
 
-    const playable = Boolean(ownerToken) || !liveUser || (Number.isFinite(distance) && distance <= PLAYABLE_RADIUS_M);
+    const playable = true;
 
     if (audio && voice.audio_path) {
       audio.src = voice.audio_path;
@@ -2701,15 +2680,11 @@
       audio.volume = soundOnStart ? 1 : 0;
     }
 
-    if (!playable) {
-      if (btnPlay) btnPlay.disabled = true;
-      toast(`Move within ${PLAYABLE_RADIUS_M}m to play`);
-      if (accessEl) accessEl.textContent = "Geo Locked";
-    } else if (!liveUser) {
+    if (!liveUser) {
       toast("Location unavailable. Playback unlocked for this session.");
       if (accessEl) accessEl.textContent = "Fallback Access";
     } else if (accessEl) {
-      accessEl.textContent = "In Range";
+      accessEl.textContent = "Open";
     }
 
     populatePlayInsights(voice, distance, liveUser);
@@ -2727,7 +2702,7 @@
 
     audio?.addEventListener("ended", () => wave?.classList.remove("playing"));
     const queryAutoplay = new URLSearchParams(window.location.search).get("autoplay") === "1";
-    const shouldAutoplay = (queryAutoplay || shouldAutoplayOnSelect()) && soundOnStart;
+    const shouldAutoplay = (queryAutoplay || shouldAutoplayOnSelect()) && soundOnStart && !getDeviceProfile().mobile;
     if (shouldAutoplay && !btnPlay?.disabled) {
       window.setTimeout(() => btnPlay?.click(), 350);
     }
