@@ -46,6 +46,14 @@
     return `${API_BASE}${pathname}`;
   }
 
+  function resolveMediaUrl(value) {
+    const raw = String(value || "").trim();
+    if (!raw) return "";
+    if (/^(https?:|blob:|data:)/i.test(raw)) return raw;
+    if (raw.startsWith("/uploads/") && API_BASE) return `${API_BASE}${raw}`;
+    return raw;
+  }
+
   function setupReveal() {
     const nodes = document.querySelectorAll(".reveal");
     if (!nodes.length) return;
@@ -902,11 +910,11 @@
       expires_at: expiresAt,
       expires_in_ms: 0,
       distance_m: Number.isFinite(distance) ? Math.round(distance) : Number(row.distance_m || 0),
-      audio_path: row.audio_path || row.audioUrl || row.audio_url || "",
+      audio_path: resolveMediaUrl(row.audio_path || row.audioUrl || row.audio_url || ""),
       images: Array.isArray(row.images)
-        ? row.images
+        ? row.images.map(resolveMediaUrl)
         : Array.isArray(row.imageUrls)
-          ? row.imageUrls
+          ? row.imageUrls.map(resolveMediaUrl)
           : []
     };
   }
