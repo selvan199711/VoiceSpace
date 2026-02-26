@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#081225" />
+  <meta name="api-base" content="" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <title>VoiceSpace | Playback</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body data-page="play">
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><img class="brand-logo" src="/assets/logo.png" alt="VoiceSpace logo" /></div>
+      <div class="pill"><span class="dot"></span> Context-first listening mode.</div>
+      <nav class="nav" aria-label="Primary">
+        <a href="/index.html"><span>Explore</span></a>
+        <a href="/play.html" aria-current="page"><span>Playback</span></a>
+        <a href="/photos.html"><span>Photos</span></a>
+      </nav>
+      <div class="sidebar-foot">Open one voice at a time and absorb location details without feed noise.</div>
+    </aside>
+
+    <section class="content">
+      <header class="topbar">
+        <h2>Voice Playback Deck</h2>
+        <span class="muted">Single track listening</span>
+      </header>
+
+      <main class="main">
+        <section class="card play-primary reveal">
+          <div class="card-title">
+            <h3 id="playTitle">No voice selected</h3>
+            <span class="badge" id="playDistance">0m</span>
+          </div>
+          <p id="playDesc" class="meta">Pick a voice from Explore.</p>
+          <p id="playPlaceContext" class="meta">Pinned near: --</p>
+          <div class="stat-strip">
+            <article class="mini-stat"><strong id="playExpiry">Permanent</strong><span>Retention</span></article>
+            <article class="mini-stat"><strong id="playCategory">General</strong><span>Category</span></article>
+            <article class="mini-stat"><strong id="playAccess">Geo Lock</strong><span>Access Mode</span></article>
+          </div>
+          <div class="wave" id="playWave"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <audio id="audio" controls style="width:100%; margin-top:12px;"></audio>
+          <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+            <button class="btn" id="btnPlay" type="button">Play / Pause</button>
+            <a class="btn secondary" href="/photos.html">Open Photos</a>
+            <button class="btn warn" id="btnDelete" type="button">Delete My Voice</button>
+          </div>
+        </section>
+
+        <section class="grid-2 reveal">
+          <article class="card">
+            <div class="card-title"><h3>Nearby Spot Context</h3><span class="chip">Places</span></div>
+            <div id="playPlacesList" class="list"></div>
+          </article>
+          <article class="card">
+            <div class="card-title"><h3>Playback Facts</h3><span class="chip">Realtime</span></div>
+            <div id="playInsightsList" class="list"></div>
+          </article>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

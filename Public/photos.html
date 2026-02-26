@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#081225" />
+  <meta name="api-base" content="" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <title>VoiceSpace | Photos</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body data-page="photos">
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><img class="brand-logo" src="/assets/logo.png" alt="VoiceSpace logo" /></div>
+      <div class="pill"><span class="dot"></span> Gallery synced to voice attachments.</div>
+      <nav class="nav" aria-label="Primary">
+        <a href="/index.html"><span>Explore</span></a>
+        <a href="/play.html"><span>Playback</span></a>
+        <a href="/photos.html" aria-current="page"><span>Photos</span></a>
+      </nav>
+      <div class="sidebar-foot">Images make audio location memory sharper and more replayable.</div>
+    </aside>
+
+    <section class="content">
+      <header class="topbar">
+        <h2>Photo + Voice Gallery</h2>
+        <span class="muted">Spatial storytelling assets</span>
+      </header>
+
+      <main class="main">
+        <section class="card reveal">
+          <div class="card-title"><h3>Attached Media</h3><span class="kbd">Auto synced</span></div>
+          <div id="photoGrid" class="media-grid"></div>
+          <div style="display:flex; gap:8px; margin-top:10px;">
+            <a class="btn" href="/play.html">Back Playback</a>
+            <a class="btn secondary" href="/index.html">Back Explore</a>
+          </div>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

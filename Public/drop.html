@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#081225" />
+  <meta name="api-base" content="" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <title>VoiceSpace | Drop Voice</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body data-page="drop">
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><img class="brand-logo" src="/assets/logo.png" alt="VoiceSpace logo" /></div>
+      <div class="pill"><span class="dot"></span> Build location stories with intent.</div>
+      <nav class="nav" aria-label="Primary">
+        <a href="/index.html"><span>Explore</span></a>
+        <a href="/drop.html" aria-current="page"><span>Drop Voice</span></a>
+        <a href="/search.html"><span>Search</span></a>
+        <a href="/settings.html"><span>Settings</span></a>
+      </nav>
+      <div class="sidebar-foot">Fast draft loop: capture, tag, attach visual context, publish.</div>
+    </aside>
+
+    <section class="content">
+      <header class="topbar">
+        <h2>Create a New Voice</h2>
+        <span class="muted">Raw upload pipeline</span>
+      </header>
+
+      <main class="main">
+        <section class="card reveal">
+          <div class="card-title"><h3>Recording Deck</h3><span class="badge">5 minute max</span></div>
+          <div class="wave" id="recordWave"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <p class="meta" id="recordStatus" style="margin-top:8px;">Ready to record</p>
+          <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+            <button class="btn" id="btnRecord" type="button">Record</button>
+            <button class="btn secondary" id="btnStop" type="button">Stop</button>
+            <button class="btn secondary" id="btnCancel" type="button">Reset</button>
+          </div>
+        </section>
+
+        <section class="card reveal">
+          <div class="card-title"><h3>Metadata + Attachments</h3><span class="kbd">Creator form</span></div>
+          <form id="dropForm">
+            <label for="voiceTitle">Title
+              <input id="voiceTitle" name="title" placeholder="Underground ramen after midnight" maxlength="64" required />
+            </label>
+            <label for="voiceDesc">Description
+              <textarea id="voiceDesc" name="description" placeholder="What should nearby listeners know?"></textarea>
+            </label>
+            <label for="voiceCategory">Category
+              <select id="voiceCategory" name="category">
+                <option value="Story">Story</option>
+                <option value="Review">Review</option>
+                <option value="Tip">Tip</option>
+                <option value="Signal">Signal</option>
+              </select>
+            </label>
+            <label for="voiceAudio">Or upload audio file
+              <input id="voiceAudio" name="audioFile" type="file" accept="audio/*" />
+            </label>
+            <label for="voiceMedia">Attach images
+              <input id="voiceMedia" name="media" type="file" accept="image/*" multiple />
+            </label>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button class="btn" type="submit">Continue to Confirm</button>
+              <a class="btn secondary" href="/index.html">Back Explore</a>
+            </div>
+          </form>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

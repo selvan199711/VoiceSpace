@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#081225" />
+  <meta name="api-base" content="" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <title>VoiceSpace | Help</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body data-page="help">
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><img class="brand-logo" src="/assets/logo.png" alt="VoiceSpace logo" /></div>
+      <div class="pill"><span class="dot"></span> Location-first, profile-free, permanent voice drops.</div>
+      <nav class="nav" aria-label="Primary">
+        <a href="/index.html"><span>Explore</span></a>
+        <a href="/drop.html"><span>Drop Voice</span></a>
+        <a href="/settings.html"><span>Settings</span></a>
+        <a href="/help.html" aria-current="page"><span>Help</span></a>
+      </nav>
+      <div class="sidebar-foot">Each voice is attached to a place and stays discoverable nearby over time.</div>
+    </aside>
+
+    <section class="content">
+      <header class="topbar">
+        <h2>How VoiceSpace Works</h2>
+        <span class="muted">Quick operational guide</span>
+      </header>
+
+      <main class="main">
+        <section class="card reveal">
+          <div class="card-title"><h3>Workflow</h3><span class="badge">3 step loop</span></div>
+          <div class="list">
+            <article class="row-item"><strong>1. Explore with map</strong><div class="meta">Use Google map navigation and place search to find local voices.</div></article>
+            <article class="row-item"><strong>2. Listen in context</strong><div class="meta">Each voice is spatially anchored for nearby playback.</div></article>
+            <article class="row-item"><strong>3. Drop your own</strong><div class="meta">Record, add metadata, and publish into the location layer.</div></article>
+          </div>
+        </section>
+
+        <section class="card reveal">
+          <div class="card-title"><h3>Privacy + Ownership</h3><span class="kbd">Token based</span></div>
+          <div class="list">
+            <article class="row-item"><strong>No social graph required</strong><div class="meta">Discovery is location-driven, not feed-driven.</div></article>
+            <article class="row-item"><strong>Delete token ownership</strong><div class="meta">Only the owner token can remove a voice.</div></article>
+            <article class="row-item"><strong>Local preferences</strong><div class="meta">Settings are stored in browser local storage.</div></article>
+          </div>
+          <div style="margin-top:10px; display:flex; gap:8px;">
+            <a class="btn" href="/index.html">Open Explore</a>
+            <a class="btn secondary" href="/settings.html">Back Settings</a>
+          </div>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

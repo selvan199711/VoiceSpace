@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#081225" />
+  <meta name="api-base" content="" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <title>VoiceSpace | Settings</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body data-page="settings">
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><img class="brand-logo" src="/assets/logo.png" alt="VoiceSpace logo" /></div>
+      <div class="pill"><span class="dot"></span> Tune playback and visibility preferences.</div>
+      <nav class="nav" aria-label="Primary">
+        <a href="/index.html"><span>Explore</span></a>
+        <a href="/settings.html" aria-current="page"><span>Settings</span></a>
+        <a href="/help.html"><span>Help</span></a>
+      </nav>
+      <div class="sidebar-foot">Preferences are local to this browser and can be changed anytime.</div>
+    </aside>
+
+    <section class="content">
+      <header class="topbar">
+        <h2>Settings</h2>
+        <span class="muted">Device and experience toggles</span>
+      </header>
+
+      <main class="main">
+        <section class="card reveal">
+          <div class="setting-row">
+            <div><strong>Sound On Start</strong><p>Enable audio playback by default</p></div>
+            <label class="switch"><input id="setSound" type="checkbox" checked /><span></span></label>
+          </div>
+          <div class="setting-row" style="margin-top:10px;">
+            <div><strong>Auto Play Nearby</strong><p>Auto-start when a nearby voice is selected</p></div>
+            <label class="switch"><input id="setAutoplay" type="checkbox" /><span></span></label>
+          </div>
+          <div class="setting-row" style="margin-top:10px;">
+            <div><strong>High Contrast</strong><p>Boost edge clarity and readability</p></div>
+            <label class="switch"><input id="setContrast" type="checkbox" /><span></span></label>
+          </div>
+          <div class="setting-row" style="margin-top:10px;">
+            <div><strong>Nearby Alerts</strong><p>Notify when a new voice/photo appears within 1km</p></div>
+            <label class="switch"><input id="setNotify" type="checkbox" checked /><span></span></label>
+          </div>
+          <label for="setGoogleKey" style="margin-top:10px;">Google Maps API Key
+            <input id="setGoogleKey" type="text" placeholder="Paste your browser key" />
+          </label>
+          <label for="setApiBase" style="margin-top:10px;">API Base URL
+            <input id="setApiBase" type="text" placeholder="https://your-backend.example.com" />
+          </label>
+          <div style="display:flex; gap:8px; margin-top:12px;">
+            <button class="btn" id="btnSaveSettings" type="button">Save Settings</button>
+            <button class="btn secondary" id="btnInstallPwa" type="button">Install App</button>
+            <a class="btn secondary" href="/help.html">Open Help</a>
+          </div>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

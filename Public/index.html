@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#081225" />
+  <meta name="api-base" content="" />
+  <meta name="google-maps-key" content="AIzaSyBPGOsRFpUMCXQQIKxGcN7ObedfUuXfwQU" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <title>VoiceSpace | Explore</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body data-page="explore">
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <img class="brand-logo" src="/assets/logo.png" alt="VoiceSpace logo" />
+      </div>
+
+      <div class="pill"><span class="dot"></span> Live now: expiring geo-voices</div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="/index.html" aria-current="page"><span>Explore</span></a>
+        <a href="/drop.html"><span>Drop Voice</span></a>
+        <a href="/search.html"><span>Search</span></a>
+        <a href="/play.html"><span>Playback</span></a>
+        <a href="/photos.html"><span>Photos</span></a>
+        <a href="/settings.html"><span>Settings</span></a>
+        <a href="/help.html"><span>Help</span></a>
+      </nav>
+
+      <div class="sidebar-foot">VoiceSpace maps memory to real places. No feed, no likes, just local context discovered by walking.</div>
+    </aside>
+
+    <section class="content">
+      <header class="topbar">
+        <h2>Explore Nearby Signal</h2>
+        <span class="muted">Place search + dynamic voice clustering</span>
+      </header>
+
+      <main class="main">
+        <section class="hero reveal">
+          <span class="chip">Tech Atlas Mode</span>
+          <h3>Discover voices exactly where the city breathes.</h3>
+          <p>Move through the map, filter the mood, and jump into nearby stories that are anchored to physical space.</p>
+          <div class="hero-kpis">
+            <article class="kpi">
+              <strong id="metricVoices">0</strong>
+              <span>Voices in Zone</span>
+            </article>
+            <article class="kpi">
+              <strong id="metricRadius">1.2km</strong>
+              <span>Scan Radius</span>
+            </article>
+            <article class="kpi">
+              <strong id="streakCount">0</strong>
+              <span>Explorer Streak</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="grid-2 reveal">
+          <article class="card">
+            <div class="card-title">
+              <h3>Geo Radar</h3>
+              <span class="kbd">Live Map</span>
+            </div>
+            <label class="search" for="searchInput">
+              <span aria-hidden="true">Find place</span>
+              <input id="searchInput" type="text" list="nearbyPlaceSuggestions" placeholder="Cafe, station, park, district" />
+            </label>
+            <datalist id="nearbyPlaceSuggestions"></datalist>
+            <div class="filters">
+              <button class="filter-pill active" data-filter="all" type="button">All</button>
+              <button class="filter-pill" data-filter="near" type="button">Under 300m</button>
+              <button class="filter-pill" data-filter="story" type="button">Story</button>
+              <button class="filter-pill" data-filter="review" type="button">Review</button>
+            </div>
+            <div class="map-stage">
+              <div id="mapCanvas" class="map" aria-label="Explore map"></div>
+              <button class="map-action" id="btnRecenterMap" type="button">My Location</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-title">
+              <h3>Nearby Voices</h3>
+              <span class="badge">Time-limited</span>
+            </div>
+            <div id="nearbyList" class="list"></div>
+            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+              <a class="btn" href="/drop.html">Create Voice</a>
+              <a class="btn secondary" href="/search.html">Deep Search</a>
+            </div>
+          </article>
+        </section>
+
+        <section class="grid-3 reveal">
+          <article class="card quest">
+            <div class="card-title">
+              <h3>Daily Quest</h3>
+              <span class="kbd" id="questValue">0/7</span>
+            </div>
+            <p class="meta">Open seven distinct nearby voices to unlock a local badge.</p>
+            <div class="quest-meter"><span id="questMeter"></span></div>
+            <div style="margin-top:10px;">
+              <button class="btn" id="btnBoost" type="button">Activate Boost</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-title">
+              <h3>Nearby Places</h3>
+              <span class="chip">Live Nearby</span>
+            </div>
+            <div id="trendList" class="list"></div>
+          </article>
+
+          <article class="card">
+            <div class="card-title">
+              <h3>Area Summary</h3>
+              <span class="chip">Useful Data</span>
+            </div>
+            <div id="creatorList" class="list"></div>
+          </article>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

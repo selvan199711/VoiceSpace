@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#081225" />
+  <meta name="api-base" content="" />
+  <meta name="google-maps-key" content="AIzaSyBPGOsRFpUMCXQQIKxGcN7ObedfUuXfwQU" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <title>VoiceSpace | Search</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body data-page="search">
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><img class="brand-logo" src="/assets/logo.png" alt="VoiceSpace logo" /></div>
+      <div class="pill"><span class="dot"></span> Place-based lookup with smart autocomplete.</div>
+      <nav class="nav" aria-label="Primary">
+        <a href="/index.html"><span>Explore</span></a>
+        <a href="/search.html" aria-current="page"><span>Search</span></a>
+        <a href="/drop.html"><span>Drop Voice</span></a>
+        <a href="/settings.html"><span>Settings</span></a>
+      </nav>
+      <div class="sidebar-foot">Pick any area, then inspect permanent voice drops in that zone.</div>
+    </aside>
+
+    <section class="content">
+      <header class="topbar">
+        <h2>Search by Place</h2>
+        <span class="muted">Search and scan nearby voice records</span>
+      </header>
+
+      <main class="main">
+        <section class="grid-2 reveal">
+          <article class="card">
+            <div class="card-title"><h3>Find Location</h3><span class="kbd">Type and Search</span></div>
+            <label class="search" for="queryInput"><span>Search</span><input id="queryInput" list="searchPlaceSuggestions" placeholder="Neighborhood, cafe, station, gallery" /></label>
+            <datalist id="searchPlaceSuggestions"></datalist>
+            <div style="display:flex; gap:8px; margin-top:10px;">
+              <button class="btn" id="btnRunSearch" type="button">Run Search</button>
+              <button class="btn secondary" id="btnNavigateSearch" type="button">Navigate There</button>
+              <a class="btn secondary" href="/index.html">Back Explore</a>
+            </div>
+            <div class="map-stage">
+              <div id="searchMap" class="map" aria-label="Search map"></div>
+              <button class="map-action" id="btnSearchMyLoc" type="button">Use My Location</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-title"><h3>Result Feed</h3><span class="badge">Geo matched</span></div>
+            <div id="searchResults" class="list"></div>
+          </article>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

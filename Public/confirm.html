@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#081225" />
+  <meta name="api-base" content="" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/assets/logo.png" type="image/png" />
+  <title>VoiceSpace | Confirm</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body data-page="confirm">
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><img class="brand-logo" src="/assets/logo.png" alt="VoiceSpace logo" /></div>
+      <div class="pill"><span class="dot"></span> Final check before permanent drop.</div>
+      <nav class="nav" aria-label="Primary">
+        <a href="/index.html"><span>Explore</span></a>
+        <a href="/drop.html" aria-current="page"><span>Drop Voice</span></a>
+        <a href="/settings.html"><span>Settings</span></a>
+      </nav>
+      <div class="sidebar-foot">Review title, category, and clarity before posting into the map layer.</div>
+    </aside>
+
+    <section class="content">
+      <header class="topbar">
+        <h2>Confirm Submission</h2>
+        <span class="muted">Permanent voice policy active</span>
+      </header>
+
+      <main class="main">
+        <section class="card reveal">
+          <div class="card-title">
+            <h3>Ready to Publish</h3>
+            <span class="badge">No expiry</span>
+          </div>
+          <div id="confirmSummary" class="list"></div>
+          <div style="display:flex; gap:8px; margin-top:10px;">
+            <button class="btn" id="btnPublish" type="button">Publish Voice</button>
+            <a class="btn secondary" href="/drop.html">Back to Edit</a>
+          </div>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

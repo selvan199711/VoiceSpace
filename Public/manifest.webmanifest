@@ -1,0 +1,19 @@
+{
+  "name": "PlaceVoice",
+  "short_name": "PlaceVoice",
+  "description": "Location-based audio messages discoverable in real places.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#081225",
+  "theme_color": "#081225",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/assets/logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
